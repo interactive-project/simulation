@@ -1,0 +1,71 @@
+{
+  "simulationVersion": "1.0.0",
+  "model": {
+    "id": "interactive-project/ballistic",
+    "modelVersion": "1.0.0",
+    "stateVersion": "1.0.0",
+    "dimension": 4,
+    "units": [
+      "m",
+      "s",
+      "acceleration"
+    ],
+    "data": {
+      "method": "constant acceleration analytic projection"
+    }
+  },
+  "parameters": [
+    {
+      "id": "gravity",
+      "valueType": "number",
+      "default": 9.81,
+      "unit": "acceleration",
+      "minimum": 0,
+      "maximum": 100
+    }
+  ],
+  "parameterValues": {},
+  "inputs": [],
+  "state": [
+    {
+      "id": "x",
+      "valueType": "number",
+      "default": 0,
+      "unit": "m",
+      "minimum": -1000000,
+      "maximum": 1000000
+    },
+    {
+      "id": "y",
+      "valueType": "number",
+      "default": 10,
+      "unit": "m",
+      "minimum": -1000000,
+      "maximum": 1000000
+    },
+    {
+      "id": "vx",
+      "valueType": "number",
+      "default": 3,
+      "unit": "m",
+      "minimum": -1000000,
+      "maximum": 1000000
+    },
+    {
+      "id": "vy",
+      "valueType": "number",
+      "default": 0,
+      "unit": "m",
+      "minimum": -1000000,
+      "maximum": 1000000
+    }
+  ],
+  "requiredCapabilities": [
+    "deterministic",
+    "offline"
+  ],
+  "requiredOperations": [
+    "step",
+    "reset"
+  ]
+}
