@@ -12,7 +12,7 @@ export async function initializeSimulation({config:input,driver,validateConfig,v
  const released=new WeakSet();async function release(h){if(!h||typeof h!=='object'||released.has(h))return;released.add(h);try{const port=h===handle&&disposePort?disposePort:h.dispose?.bind(h);await port?.();}catch{}}
  async function operation(stage,fn,outerSignal,commit){
   if(disposed)throw new SimulationError('simulation.disposed',stage);if(busy)throw new SimulationError('simulation.busy',stage);busy=true;const generation=epoch,controller=new AbortController();active=controller;let timer,abortListener;
-  const cancelled=new Promise((_,reject)=>{controller.signal.addEventListener('abort',()=>reject(new SimulationError(controller.reason==='timeout'?'simulation.timeout':'simulation.cancelled',stage)),{once:true});});
+  const cancelled=new Promise((_,reject)=>{controller.signal.addEventListener('abort',()=>reject(new SimulationError(controller.signal.reason==='timeout'?'simulation.timeout':'simulation.cancelled',stage)),{once:true});});
   const abort=()=>controller.abort('cancelled');if(outerSignal){abortListener=abort;outerSignal.addEventListener('abort',abort,{once:true});if(outerSignal.aborted)abort();}
   timer=setTimeout(()=>controller.abort('timeout'),timeoutMs);
   const work=Promise.resolve().then(()=>{if(controller.signal.aborted)throw new SimulationError('simulation.cancelled',stage);return fn(controller.signal);});
