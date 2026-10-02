@@ -1,0 +1,46 @@
+{
+  "driverVersion": "1.0.0",
+  "id": "interactive-project/fixture-models",
+  "models": [
+    {
+      "id": "interactive-project/counter",
+      "modelVersion": "1.0.0",
+      "stateVersion": "1.0.0",
+      "dimensions": [
+        0
+      ],
+      "units": [
+        "count",
+        "s"
+      ]
+    },
+    {
+      "id": "interactive-project/ballistic",
+      "modelVersion": "1.0.0",
+      "stateVersion": "1.0.0",
+      "dimensions": [
+        2
+      ],
+      "units": [
+        "m",
+        "s",
+        "acceleration"
+      ]
+    }
+  ],
+  "capabilities": {
+    "interactive": true,
+    "evaluable": false,
+    "collaborative": false,
+    "offline": true,
+    "deterministic": true,
+    "resumable": false,
+    "aiGeneratable": true
+  },
+  "operations": {
+    "step": true,
+    "input": true,
+    "reset": true
+  },
+  "requiredPermissions": []
+}

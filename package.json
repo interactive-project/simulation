@@ -1,0 +1,66 @@
+{
+  "name": "@interactive-project/simulation",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Versioned portable simulation models and asynchronous trusted driver contracts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "types",
+    "validation",
+    "schemas",
+    "runtime",
+    "docs",
+    "fixtures",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
+    },
+    "./validation": {
+      "types": "./validation/index.d.ts",
+      "import": "./validation/index.js",
+      "default": "./validation/index.js"
+    },
+    "./schemas/simulation.v1.schema.json": "./schemas/simulation.v1.schema.json",
+    "./schemas/driver-manifest.v1.schema.json": "./schemas/driver-manifest.v1.schema.json",
+    "./runtime": {
+      "types": "./runtime/index.d.ts",
+      "import": "./runtime/index.js",
+      "default": "./runtime/index.js"
+    }
+  },
+  "scripts": {
+    "test": "node scripts/check-conformance.mjs"
+  },
+  "peerDependencies": {
+    "@interactive-project/protocol": "0.1.0",
+    "@interactive-project/content-node": "0.1.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "@interactive-project/events": "0.1.0",
+    "@interactive-project/core": "0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "ajv": {
+      "optional": true
+    },
+    "ajv-formats": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@interactive-project/protocol": "git+https://github.com/interactive-project/protocol.git#0280e004ba863621a257b96819f34295c8db0ea7",
+    "@interactive-project/content-node": "git+https://github.com/interactive-project/content-node.git#276f7970a703035eab6130784046584f51df0534",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "typescript": "^5.9.3",
+    "@interactive-project/events": "git+https://github.com/interactive-project/events.git#ebea0bb90db349e9f83b713bfa1871113868671e",
+    "@interactive-project/registry": "git+https://github.com/interactive-project/registry.git#872c1ab6350494113e3dca16f70da60dce6e15eb",
+    "@interactive-project/core": "git+https://github.com/interactive-project/core.git#f4923be1fe252904d48ed7ea60061848b2a8c429"
+  }
+}

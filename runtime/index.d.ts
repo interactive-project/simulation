@@ -1,0 +1,7 @@
+import type {SimulationConfig,DriverManifest,SimulationState,Scalar} from '../types/simulation.js';
+import type {CancellationSignal,MaybePromise} from '@interactive-project/protocol/interoperability';
+export interface StepContext {readonly state:Readonly<Record<string,Scalar>>;readonly parameters:Readonly<Record<string,Scalar>>;readonly inputs:Readonly<Record<string,Scalar>>;readonly dt:number;readonly signal:CancellationSignal}
+export interface DriverHandle {readonly initialState:unknown;step(context:StepContext):MaybePromise<unknown>;reset?(context:{parameters:Readonly<Record<string,Scalar>>;inputs:Readonly<Record<string,Scalar>>;signal:CancellationSignal}):MaybePromise<unknown>;dispose():MaybePromise<void>}
+export interface Driver {readonly manifest:DriverManifest;initialize(config:SimulationConfig,options:{signal:CancellationSignal}):MaybePromise<DriverHandle>}
+export interface SimulationSession {readonly manifest:DriverManifest;readonly config:SimulationConfig;getState():SimulationState;input(values:unknown):SimulationState;step(dt:number,options?:{signal?:CancellationSignal}):Promise<SimulationState>;reset(options?:{signal?:CancellationSignal}):Promise<SimulationState>;dispose():Promise<void>}
+export function initializeSimulation(options:{config:unknown;driver:Driver;validateConfig:(input:unknown)=>{valid:boolean};validateManifest:(input:unknown)=>{valid:boolean};policy?:{execution?:boolean;network?:boolean;media?:boolean};signal?:CancellationSignal;timeoutMs?:number}):Promise<SimulationSession>;

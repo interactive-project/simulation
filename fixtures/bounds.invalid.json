@@ -1,0 +1,54 @@
+{
+  "simulationVersion": "1.0.0",
+  "model": {
+    "id": "interactive-project/counter",
+    "modelVersion": "1.0.0",
+    "stateVersion": "1.0.0",
+    "dimension": 0,
+    "units": [
+      "count",
+      "s"
+    ],
+    "data": {
+      "description": "Deterministic counter rate model"
+    }
+  },
+  "parameters": [
+    {
+      "id": "rate",
+      "valueType": "number",
+      "default": 2,
+      "unit": "count",
+      "minimum": 200,
+      "maximum": 100
+    }
+  ],
+  "parameterValues": {},
+  "inputs": [
+    {
+      "id": "enabled",
+      "valueType": "boolean",
+      "default": true,
+      "unit": null
+    }
+  ],
+  "state": [
+    {
+      "id": "count",
+      "valueType": "number",
+      "default": 0,
+      "unit": "count",
+      "minimum": 0,
+      "maximum": 1000000
+    }
+  ],
+  "requiredCapabilities": [
+    "deterministic",
+    "offline"
+  ],
+  "requiredOperations": [
+    "step",
+    "input",
+    "reset"
+  ]
+}
