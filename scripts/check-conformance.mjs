@@ -16,7 +16,7 @@ const initialize=(config=custom,options={})=>initializeSimulation({config,driver
 }
 {
  const before=creates;for(const mutate of [c=>c.model.modelVersion='2.0.0',c=>c.model.dimension=3,c=>c.model.units.push('kg'),c=>c.requiredCapabilities.push('collaborative')]){const config=clone(custom);mutate(config);await assert.rejects(initialize(config),e=>e.stage==='negotiation');}assert.equal(creates,before);
- const remoteConfig=clone(custom);remoteConfig.requiredCapabilities=['deterministic'];const guarded={...driver,manifest:{...manifest,capabilities:{...manifest.capabilities,offline:false},requiredPermissions:['network']}};await assert.rejects(initialize(remoteConfig,{driver:guarded}),e=>e.code==='simulation.permission');assert.equal(creates,before);const allowed=await initialize(custom,{driver:guarded,policy:{network:true}});await allowed.dispose();
+ const remoteConfig=clone(custom);remoteConfig.requiredCapabilities=['deterministic'];const guarded={...driver,manifest:{...manifest,capabilities:{...manifest.capabilities,offline:false},requiredPermissions:['network']}};await assert.rejects(initialize(remoteConfig,{driver:guarded}),e=>e.code==='simulation.permission');assert.equal(creates,before);const allowed=await initialize(remoteConfig,{driver:guarded,policy:{network:true}});await allowed.dispose();
  const duplicate=clone(manifest);duplicate.models.push(duplicate.models[0]);assert(!validateDriverManifest(duplicate).valid);
 }
 {
